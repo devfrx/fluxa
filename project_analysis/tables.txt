@@ -1,0 +1,82 @@
+DETTAGLIO TABELLE:
+1. CONVERSATIONS
+Campo	Tipo	Vincoli	Descrizione
+id	INTEGER	PK, AUTOINCREMENT	ID univoco
+title	TEXT	NOT NULL	Titolo conversazione
+created_at	TIMESTAMP	DEFAULT CURRENT_TIMESTAMP	Data creazione
+updated_at	TIMESTAMP	DEFAULT CURRENT_TIMESTAMP	Ultimo aggiornamento
+metadata	TEXT (JSON)	-	Dati extra
+
+2. MESSAGES
+Campo	Tipo	Vincoli	Descrizione
+id	INTEGER	PK, AUTOINCREMENT	ID univoco
+conversation_id	INTEGER	FK → CONVERSATIONS, NOT NULL	Conversazione di appartenenza
+role	TEXT	CHECK IN ('user', 'assistant', 'system', 'tool')	Ruolo mittente
+content	TEXT	NOT NULL	Contenuto messaggio
+tokens	INTEGER	DEFAULT 0	Token utilizzati
+model	TEXT	-	Modello usato
+created_at	TIMESTAMP	DEFAULT CURRENT_TIMESTAMP	Data creazione
+metadata	TEXT (JSON)	-	Dati extra (es: tool_call_id)
+Indici:
+
+3. TOOL_EXECUTIONS
+Campo	Tipo	Vincoli	Descrizione
+id	INTEGER	PK, AUTOINCREMENT	ID univoco
+message_id	INTEGER	FK → MESSAGES	Messaggio associato
+tool_name	TEXT	NOT NULL	Nome tool eseguito
+parameters	TEXT (JSON)	-	Parametri passati
+result	TEXT	-	Risultato esecuzione
+status	TEXT	CHECK IN ('started', 'success', 'error')	Stato esecuzione
+duration_ms	REAL	-	Durata in millisecondi
+error_message	TEXT	-	Messaggio errore (se status=error)
+created_at	TIMESTAMP	DEFAULT CURRENT_TIMESTAMP	Data esecuzione
+Indice:
+
+4. IMAGES
+Campo	Tipo	Vincoli	Descrizione	Esempio
+id	INTEGER	PK, AUTOINCREMENT	ID univoco	1
+message_id	INTEGER	FK → MESSAGES	Messaggio che contiene l'immagine	5
+file_path	TEXT	NOT NULL	Percorso sul filesystem	uploads/2024/01/img_abc123.jpg
+file_name	TEXT	NOT NULL	Nome file originale	photo.jpg
+file_size	INTEGER	NOT NULL	Dimensione in bytes	1024000 (1MB)
+mime_type	TEXT	NOT NULL	Tipo MIME	image/jpeg
+width	INTEGER	-	Larghezza in pixel	1920
+height	INTEGER	-	Altezza in pixel	1080
+hash	TEXT	UNIQUE	Hash SHA256 per deduplicazione	a3b2c1d4...
+created_at	TIMESTAMP	DEFAULT CURRENT_TIMESTAMP	Data caricamento	2024-01-20 14:30:00
+metadata	TEXT (JSON)	-	Dati extra	{"source": "upload", "device": "iphone"}
+
+5. VISION_ANALYSES
+Campo	Tipo	Vincoli	Descrizione	Esempio
+id	INTEGER	PK, AUTOINCREMENT	ID univoco	1
+image_id	INTEGER	FK → IMAGES, NOT NULL	Immagine analizzata	1
+message_id	INTEGER	FK → MESSAGES	Contesto conversazione	5
+model	TEXT	NOT NULL	Modello vision usato	llava-1.6-mistral-7b
+description	TEXT	-	Descrizione generale	"Un cane marrone in un parco"
+detected_objects	TEXT (JSON)	-	Oggetti rilevati	[{"label": "dog", "confidence": 0.98}]
+extracted_text	TEXT	-	Testo estratto (OCR)	"Benvenuti al parco"
+tags	TEXT (JSON)	-	Tag automatici	["outdoor", "animal", "nature"]
+confidence	REAL	CHECK(confidence >= 0 AND confidence <= 1)	Confidence media	0.95
+processing_time	REAL	-	Tempo elaborazione (ms)	1234.56
+created_at	TIMESTAMP	DEFAULT CURRENT_TIMESTAMP	Data analisi	2024-01-20 14:32:00
+metadata	TEXT (JSON)	-	Dati extra	{"temperature": 0.5, "max_tokens": 512}
+
+6. TASKS
+Campo	Tipo	Vincoli	Descrizione
+id	INTEGER	PK, AUTOINCREMENT	ID univoco
+title	TEXT	NOT NULL	Titolo task
+description	TEXT	-	Descrizione dettagliata
+status	TEXT	CHECK IN ('pending', 'in_progress', 'completed', 'failed')	Stato task
+priority	INTEGER	DEFAULT 0	Priorità (0-10)
+created_at	TIMESTAMP	DEFAULT CURRENT_TIMESTAMP	Data creazione
+updated_at	TIMESTAMP	DEFAULT CURRENT_TIMESTAMP	Ultimo aggiornamento
+completed_at	TIMESTAMP	-	Data completamento
+metadata	TEXT (JSON)	-	Dati extra
+
+7. CONTEXT
+Campo	Tipo	Vincoli	Descrizione
+key	TEXT	PK	Chiave univoca
+value	TEXT (JSON)	NOT NULL	Valore (JSON)
+category	TEXT	-	Categoria organizzativa
+created_at	TIMESTAMP	DEFAULT CURRENT_TIMESTAMP	Data creazione
+updated_at	TIMESTAMP	DEFAULT CURRENT_TIMESTAMP	Ultimo aggiornamento

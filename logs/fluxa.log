@@ -1,0 +1,16 @@
+2025-11-20 14:09:06 | INFO     | fluxa.utils.logger:setup_logger:75 - Logger inizializzato | Level: INFO | File: logs\fluxa.log
+2025-11-20 14:09:06 | INFO     | tests.test_logger:test_logger_setup:18 - Messaggio informativo
+2025-11-20 14:09:06 | WARNING  | tests.test_logger:test_logger_setup:19 - Messaggio di warning
+2025-11-20 14:09:06 | SUCCESS  | tests.test_logger:test_logger_setup:20 - Operazione completata!
+2025-11-20 14:09:06 | INFO     | fluxa.utils.logger:setup_logger:75 - Logger inizializzato | Level: INFO | File: logs\fluxa.log
+2025-11-20 14:09:06 | INFO     | fluxa.utils.logger:log_llm_interaction:167 - LLM REQUEST: Ciao, come stai?
+2025-11-20 14:09:06 | INFO     | fluxa.utils.logger:log_llm_interaction:167 - LLM RESPONSE: Ciao! Sto bene, grazie per aver chiesto.
+2025-11-20 14:09:06 | INFO     | fluxa.utils.logger:setup_logger:75 - Logger inizializzato | Level: INFO | File: logs\fluxa.log
+2025-11-20 14:09:06 | INFO     | fluxa.utils.logger:log_tool_execution:213 - Tool 'file_read' avviato
+2025-11-20 14:09:06 | SUCCESS  | fluxa.utils.logger:log_tool_execution:217 - Tool 'file_read' completato | Risultato: File content...
+2025-11-20 14:09:06 | INFO     | fluxa.utils.logger:setup_logger:75 - Logger inizializzato | Level: INFO | File: logs\fluxa.log
+2025-11-20 14:22:42 | INFO     | fluxa.utils.logger:setup_logger:75 - Logger inizializzato | Level: INFO | File: logs\fluxa.log
+2025-11-20 14:22:42 | INFO     | __main__:<module>:18 - ℹ️  Info message
+2025-11-20 14:22:42 | WARNING  | __main__:<module>:19 - ⚠️  Warning message
+2025-11-20 14:22:42 | SUCCESS  | __main__:<module>:20 - ✅ Success message
+2025-11-20 14:22:42 | ERROR    | __main__:<module>:21 - ❌ Error message

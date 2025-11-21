@@ -74,7 +74,7 @@ class LMStudioSettings(BaseSettings):
         le=2.0,
         description="Temperatura per la generazione",
     )
-    
+
     max_tokens: int = Field(
         default=2048,
         ge=1,
@@ -182,7 +182,7 @@ class DatabaseSettings(BaseSettings):
         """Crea automaticamente le directory parent se non esistono."""
         v.parent.mkdir(parents=True, exist_ok=True)
         return v
-    
+
     model_config = SettingsConfigDict(
         env_prefix="FLUXA_DB_",
         case_sensitive=False,
@@ -249,6 +249,131 @@ class LoggingSettings(BaseSettings):
         Rotazione file log (es: "10 MB", "1 week")
     #? retention : str
         Retention file log (es: "1 month")
+    #? compression : str | None
+        Compressione file log (es: "zip", "tar.gz", None = nessuna
     #? model_config : SettingsConfigDict
         Configurazione per il caricamento da variabili d'ambiente
     """
+
+    level: Literal["DEBUG", "INFO", "WARNING", "ERROR", "CRITICAL"] = Field(
+        default="INFO",
+        description="Livello di log",
+    )
+    format: str = Field(
+        default="<green>{time:YYYY-MM-DD HH:mm:ss}</green> | <level>{level: <8}</level> | <cyan>{name}</cyan>:<cyan>{function}</cyan>:<cyan>{line}</cyan> - <level>{message}</level>",
+        description="Formato dei log",
+    )
+    file_path: Path | None = Field(
+        default=Path("logs/fluxa.log"),
+        description="Percorso file log",
+    )
+    rotation: str = Field(
+        default="10 MB",
+        description="Rotazione file log",
+    )
+    compression: str | None = Field(
+        default="zip",
+        description="Compressione file log",
+    )
+    retention: str = Field(
+        default="1 month",
+        description="Retention file log",
+    )
+
+    @field_validator("file_path")
+    def reate_log_directory(cls, v: Path | None) -> Path | None:
+        """Crea automaticamente le directory parent se non esistono."""
+        if v is not None:
+            v.parent.mkdir(parents=True, exist_ok=True)
+        return v
+    
+    model_config = SettingsConfigDict(
+        env_prefix="FLUXA_LOGGING_",
+        case_sensitive=False,
+    )
+
+class Settings(BaseSettings):
+    """Configurazione principale di Fluxa.
+
+    Questa classe aggrega tutte le sotto-configurazioni e fornisce
+    un punto di accesso centralizzato per tutte le impostazioni.
+
+    Attributi
+    ---------
+    #? app_name : str
+        Nome dell'applicazione
+    #? version : str
+        Versione dell'applicazione
+    #? debug : bool
+        Modalità debug
+    #? lmstudio : LMStudioSettings
+        Configurazione LMStudio
+    #? vision : VisionSettings
+        Configurazione visione
+    #? database : DatabaseSettings
+        Configurazione database
+    #? tools : ToolsSettings
+        Configurazione tools
+    #? logging : LoggingSettings
+        Configurazione logging
+    """
+
+    app_name: str = Field(
+        default="Fluxa AI Agent",
+        description="Nome dell'applicazione",
+    )
+
+    version: str = Field(
+        default="0.0.0",
+        description="Versione dell'applicazione",
+    )
+
+    debug: bool = Field(
+        default=False,
+        description="Modalità debug",
+    )
+
+    # Sotto-configurazioni
+    lmstudio: LMStudioSettings = Field(default_factory=LMStudioSettings)
+    vision: VisionSettings = Field(default_factory=VisionSettings)
+    database: DatabaseSettings = Field(default_factory=DatabaseSettings)
+    tools: ToolsSettings = Field(default_factory=ToolsSettings)
+    logging: LoggingSettings = Field(default_factory=LoggingSettings)
+
+    model_config = SettingsConfigDict(
+        env_file=".env",  # Carica automaticamente da .env
+        env_file_encoding="utf-8",
+        env_nested_delimiter="__",  # Permette LMSTUDIO__BASE_URL
+        case_sensitive=False,
+        extra="ignore",  # Ignora variabili extra
+    )
+
+@lru_cache() # Cache per evitare ricaricamenti multipli
+def get_settings() -> Settings:
+    """Ottieni l'istanza singleton delle impostazioni.
+
+    Questa funzione usa una cache per garantire che esista una sola
+    istanza delle impostazioni per tutta l'applicazione.
+
+    Returns
+    -------
+    Settings
+        Istanza delle impostazioni
+
+    Esempio
+    -------
+    >>> settings = get_settings()
+    >>> print(settings.lmstudio.base_url)
+    'http://localhost:1234/v1'
+    """
+    return Settings()
+
+__all__ = [
+    "Settings",
+    "LMStudioSettings",
+    "VisionSettings",
+    "DatabaseSettings",
+    "ToolsSettings",
+    "LoggingSettings",
+    "get_settings",
+]

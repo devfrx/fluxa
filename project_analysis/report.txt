@@ -1,0 +1,43 @@
+In questo report documento l'architettura del database SQLite che ho progettato per Fluxa, il mio AI agent content-aware basato su modelli locali tramite LMStudio. Il database rappresenta il cuore del sistema di memoria persistente dell'agente, gestendo conversazioni, immagini, analisi vision, task e contesto.
+
+Essendo al primo anno universitario e un programmatore junior, ho cercato di applicare le best practice che ho appreso, progettando un sistema modulare, scalabile e con integrità referenziale garantita.
+
+Ho progettato il database con questi obiettivi principali:
+1. PERSISTENZA COMPLETA:
+Voglio che l'agente ricordi tutto: conversazioni passate, immagini analizzate, tool eseguiti e task completati. Non voglio perdere informazioni preziose tra una sessione e l'altra.
+
+2. SUPPORTO VISION TOOL INTEGRATO:
+Uno dei requisiti principali è la gestione delle immagini. Non mi bastava salvare solo un riferimento al file: volevo tracciare dimensioni, formati, hash per deduplicazione e soprattutto i risultati delle analisi vision.
+
+3. FUNCTION CALLING TRACCIATO:
+Ogni volta che l'agente usa un tool (lettura file, calcoli, web search), voglio sapere:
+    - Quale tool ha usato
+    - Con quali parametri
+    - Quanto tempo ha impiegato
+    - Se ha avuto successo o è fallito
+
+4. SCALABILITA':
+Ho aggiunto indici dove servono e strutture JSON per metadati flessibili.
+
+5. INTEGRITA' REFERENZIALE:
+Ho usato foreign keys con ON DELETE CASCADE per garantire che cancellando una conversazione, si cancellino automaticamente tutti i messaggi, immagini e analisi correlate. Niente dati orfani.
+
+ARCHITETTURA DEL DB:
+Tecnologia Scelta: SQLite con WAL Mode
+Ho scelto SQLite perché:
+
+    - È embedded (nessun server separato da gestire)
+    - È affidabile e maturo
+    - Supporta transazioni ACID
+    - Con WAL mode (Write-Ahead Logging) ottiene performance eccellenti anche in scenari async
+
+STRUTTURA GENERALE:
+Il database è composto da 7 tabelle organizzate in due categorie:
+
+A) Tabelle Relazionali (con Foreign Keys):
+CONVERSATIONS → MESSAGES → TOOL_EXECUTIONS                    ↓                 IMAGES → VISION_ANALYSES
+Queste tabelle sono strettamente correlate e formano il cuore del sistema conversazionale.
+
+B) Tabelle Standalone:
+TASKS (gestione compiti)CONTEXT (key-value store per memoria a lungo termine)
+Queste tabelle sono indipendenti e non hanno relazioni dirette con le conversazioni.

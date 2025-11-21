@@ -1,0 +1,64 @@
+FLUSSI LOGICI:
+User Input → UI → Agent → LLM Client → LMStudio API
+                   ↓
+              Tool Registry ← Tools Execution
+                   ↓
+              Memory Manager → Database
+                   ↓
+              Response → UI → User
+
+==================================================
+
+┌─────────────────────────────────────────────┐
+│ 1. LOGGING (utils/logger.py)        ← INIZIA QUI
+│    • Traccia TUTTO ciò che accade           │
+│    • Essenziale per debugging               │
+│    • Usato da TUTTI gli altri moduli        │
+└─────────────────────────────────────────────┘
+                    ↓
+┌─────────────────────────────────────────────┐
+│ 2. DATABASE SCHEMA (memory/database.py)     │
+│    • Struttura dati persistente             │
+│    • Possiamo loggare le operazioni DB      │
+└─────────────────────────────────────────────┘
+                    ↓
+┌─────────────────────────────────────────────┐
+│ 3. LLM CLIENT (llm/client.py)               │
+│    • Comunicazione con LMStudio             │
+│    • Possiamo loggare richieste/risposte    │
+└─────────────────────────────────────────────┘
+                    ↓
+┌─────────────────────────────────────────────┐
+│ 4. AGENT CORE (core/agent.py)               │
+│    • Orchestratore principale               │
+│    • Usa logger, DB e LLM client            │
+└─────────────────────────────────────────────┘
+
+ESEMPIO FLUSSO DATI:
+Scenario: User chiede "Leggi il file config.py"
+
+1. CONVERSATIONS
+   └─ Nuova conversazione creata
+      id=1, title="Aiuto con file"
+
+2. MESSAGES
+   ├─ Messaggio utente
+   │  id=1, conversation_id=1, role="user"
+   │  content="Leggi il file config.py"
+   │
+   └─ Messaggio assistant (con tool call)
+      id=2, conversation_id=1, role="assistant"
+      content="Sto leggendo il file..."
+      metadata='{"tool_call_id": "tc_123"}'
+
+3. TOOL_EXECUTIONS
+   └─ Esecuzione tool file_read
+      id=1, message_id=2, tool_name="file_read"
+      parameters='{"path": "config.py"}'
+      result="File content: ..."
+      status="success"
+
+4. MESSAGES
+   └─ Messaggio finale assistant
+      id=3, conversation_id=1, role="assistant"
+      content="Ho letto il file. Contiene..."

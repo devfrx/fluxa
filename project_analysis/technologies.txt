@@ -1,0 +1,13 @@
+TECNOLOGIE:
+Backend & Core:
+    - httpx: Client HTTP async per chiamate a LMStudio API
+    - pydantic: Validazione dati e configurazione
+    - aiosqlite: Database async SQLite
+    - loguru: Logging avanzato
+
+UI:
+    - textual: Framework TUI (Terminal UI) moderno e reattivo
+
+AI & Function Calling
+    - instructor: Parsing strutturato delle risposte LLM
+    - json-schema: Definizione schema per function calling

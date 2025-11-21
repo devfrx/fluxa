@@ -1,0 +1,129 @@
+RELAZIONI TRA TABELLE:
+Legenda:
+
+(1) ────< (N) = Relazione uno-a-molti
+Standalone = Nessuna foreign key, tabella indipendente
+
+
+CONVERSATIONS (1) ──────< MESSAGES (N)
+                              │
+                              ├──────< TOOL_EXECUTIONS (N)
+                              │
+                              └──────< IMAGES (N)
+                                          │
+                                          └──────< VISION_ANALYSES (N)
+
+TASKS: Standalone (nessuna FK)
+
+CONTEXT: Standalone (key-value store)
+
+
+┌───────────────────────────────────────┐
+│       DATABASE: fluxa.db              │
+│    (SQLite con WAL mode abilitato)    │
+└───────────────────────────────────────┘
+
+┌────────────────────────────────┐
+│      CONVERSATIONS             │
+│================================│
+│ PK  id              INTEGER    │
+│     title           TEXT       │◄─────┐
+│     created_at      TIMESTAMP  │      │
+│     updated_at      TIMESTAMP  │      │
+│     metadata        TEXT (JSON)│      │ ONE-TO-MANY
+└────────────────────────────────┘      │
+                                        │
+                                        │
+┌────────────────────────────────┐      │
+│         MESSAGES               │      │
+│================================│      │
+│ PK  id              INTEGER    │      │
+│ FK  conversation_id INTEGER    │──────┘
+│     role            TEXT       │
+│     content         TEXT       │◄────┬────┐
+│     tokens          INTEGER    │     │    │
+│     model           TEXT       │     │    │ ONE-TO-MANY
+│     created_at      TIMESTAMP  │     │    │
+│     metadata        TEXT (JSON)│     │    │
+└────────────────────────────────┘     │    │
+                                       │    │
+                  ┌────────────────────┘    │
+                  │                         │
+┌─────────────────▼──────────────┐          │
+│      TOOL_EXECUTIONS           │          │
+│================================│          │
+│ PK  id              INTEGER    │          │
+│ FK  message_id      INTEGER    │          │
+│     tool_name       TEXT       │          │
+│     parameters      TEXT (JSON)│          │
+│     result          TEXT       │          │
+│     status          TEXT       │          │
+│     duration_ms     REAL       │          │
+│     error_message   TEXT       │          │
+│     created_at      TIMESTAMP  │          │
+└────────────────────────────────┘          │
+                                            │
+                  ┌─────────────────────────┘
+                  │
+┌─────────────────▼──────────────┐
+│           IMAGES               │
+│================================│
+│ PK  id              INTEGER    │
+│ FK  message_id      INTEGER    │
+│     file_path       TEXT       │◄─────┐
+│     file_name       TEXT       │      │
+│     file_size       INTEGER    │      │
+│     mime_type       TEXT       │      │ ONE-TO-MANY
+│     width           INTEGER    │      │
+│     height          INTEGER    │      │
+│     hash            TEXT       │      │
+│     created_at      TIMESTAMP  │      │
+│     metadata        TEXT (JSON)│      │
+└────────────────────────────────┘      │
+                                        │
+                  ┌─────────────────────┘
+                  │
+┌─────────────────▼──────────────┐
+│       VISION_ANALYSES          │
+│================================│
+│ PK  id              INTEGER    │
+│ FK  image_id        INTEGER    │
+│ FK  message_id      INTEGER    │
+│     model           TEXT       │
+│     description     TEXT       │
+│     detected_objs   TEXT (JSON)│
+│     extracted_text  TEXT       │
+│     tags            TEXT (JSON)│
+│     confidence      REAL       │
+│     processing_time REAL       │
+│     created_at      TIMESTAMP  │
+│     metadata        TEXT (JSON)│
+└────────────────────────────────┘
+
+
+┌────────────────────────────────┐
+│           TASKS                │
+│        (Standalone)            │
+│================================│
+│ PK  id              INTEGER    │
+│     title           TEXT       │
+│     description     TEXT       │
+│     status          TEXT       │
+│     priority        INTEGER    │
+│     created_at      TIMESTAMP  │
+│     updated_at      TIMESTAMP  │
+│     completed_at    TIMESTAMP  │
+│     metadata        TEXT (JSON)│
+└────────────────────────────────┘
+
+
+┌────────────────────────────────┐
+│          CONTEXT               │
+│   (Key-Value Store Standalone) │
+│================================│
+│ PK  key             TEXT       │
+│     value           TEXT (JSON)│
+│     category        TEXT       │
+│     created_at      TIMESTAMP  │
+│     updated_at      TIMESTAMP  │
+└────────────────────────────────┘
