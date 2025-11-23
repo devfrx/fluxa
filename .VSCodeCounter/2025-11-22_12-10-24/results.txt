@@ -1,0 +1,62 @@
+Date : 2025-11-22 12:10:24
+Directory : c:\Users\zagor\Desktop\fluxa
+Total : 22 files,  716 codes, 390 comments, 172 blanks, all 1278 lines
+
+Languages
++--------------------+------------+------------+------------+------------+------------+
+| language           | files      | code       | comment    | blank      | total      |
++--------------------+------------+------------+------------+------------+------------+
+| Python             |         12 |        436 |        382 |        124 |        942 |
+| YAML               |          4 |        108 |          1 |         11 |        120 |
+| JSON with Comments |          1 |         80 |          0 |          0 |         80 |
+| Markdown           |          3 |         58 |          0 |         31 |         89 |
+| Docker             |          1 |         18 |          7 |          5 |         30 |
+| log                |          1 |         16 |          0 |          1 |         17 |
++--------------------+------------+------------+------------+------------+------------+
+
+Directories
++--------------------------------------------------------------+------------+------------+------------+------------+------------+
+| path                                                         | files      | code       | comment    | blank      | total      |
++--------------------------------------------------------------+------------+------------+------------+------------+------------+
+| .                                                            |         22 |        716 |        390 |        172 |      1,278 |
+| . (Files)                                                    |          6 |        180 |          8 |         43 |        231 |
+| .devcontainer                                                |          1 |         80 |          0 |          0 |         80 |
+| docs                                                         |          2 |          4 |          0 |          4 |          8 |
+| logs                                                         |          1 |         16 |          0 |          1 |         17 |
+| src                                                          |          7 |        366 |        368 |         93 |        827 |
+| src\fluxa                                                    |          7 |        366 |        368 |         93 |        827 |
+| src\fluxa (Files)                                            |          2 |          6 |          3 |          6 |         15 |
+| src\fluxa\core                                               |          1 |        194 |        143 |         42 |        379 |
+| src\fluxa\memory                                             |          2 |         41 |         63 |         17 |        121 |
+| src\fluxa\utils                                              |          2 |        125 |        159 |         28 |        312 |
+| tests                                                        |          5 |         70 |         14 |         31 |        115 |
++--------------------------------------------------------------+------------+------------+------------+------------+------------+
+
+Files
++--------------------------------------------------------------+--------------------+------------+------------+------------+------------+
+| filename                                                     | language           | code       | comment    | blank      | total      |
++--------------------------------------------------------------+--------------------+------------+------------+------------+------------+
+| c:\Users\zagor\Desktop\fluxa\.copier-answers.yml             | YAML               |         12 |          0 |          1 |         13 |
+| c:\Users\zagor\Desktop\fluxa\.devcontainer\devcontainer.json | JSON with Comments |         80 |          0 |          0 |         80 |
+| c:\Users\zagor\Desktop\fluxa\.pre-commit-config.yaml         | YAML               |         65 |          1 |          1 |         67 |
+| c:\Users\zagor\Desktop\fluxa\Dockerfile                      | Docker             |         18 |          7 |          5 |         30 |
+| c:\Users\zagor\Desktop\fluxa\README.md                       | Markdown           |         54 |          0 |         27 |         81 |
+| c:\Users\zagor\Desktop\fluxa\docker-compose.yml              | YAML               |          9 |          0 |          3 |         12 |
+| c:\Users\zagor\Desktop\fluxa\docs\index.md                   | Markdown           |          2 |          0 |          2 |          4 |
+| c:\Users\zagor\Desktop\fluxa\docs\reference.md               | Markdown           |          2 |          0 |          2 |          4 |
+| c:\Users\zagor\Desktop\fluxa\logs\fluxa.log                  | log                |         16 |          0 |          1 |         17 |
+| c:\Users\zagor\Desktop\fluxa\mkdocs.yml                      | YAML               |         22 |          0 |          6 |         28 |
+| c:\Users\zagor\Desktop\fluxa\src\fluxa\__init__.py           | Python             |          0 |          1 |          1 |          2 |
+| c:\Users\zagor\Desktop\fluxa\src\fluxa\cli.py                | Python             |          6 |          2 |          5 |         13 |
+| c:\Users\zagor\Desktop\fluxa\src\fluxa\core\config.py        | Python             |        194 |        143 |         42 |        379 |
+| c:\Users\zagor\Desktop\fluxa\src\fluxa\memory\__init__.py    | Python             |          4 |          4 |          2 |         10 |
+| c:\Users\zagor\Desktop\fluxa\src\fluxa\memory\database.py    | Python             |         37 |         59 |         15 |        111 |
+| c:\Users\zagor\Desktop\fluxa\src\fluxa\utils\__init__.py     | Python             |         16 |          5 |          2 |         23 |
+| c:\Users\zagor\Desktop\fluxa\src\fluxa\utils\logger.py       | Python             |        109 |        154 |         26 |        289 |
+| c:\Users\zagor\Desktop\fluxa\tests\__init__.py               | Python             |          0 |          1 |          1 |          2 |
+| c:\Users\zagor\Desktop\fluxa\tests\pytest_logger.py          | Python             |         46 |          5 |         15 |         66 |
+| c:\Users\zagor\Desktop\fluxa\tests\test_cli.py               | Python             |          8 |          2 |          6 |         16 |
+| c:\Users\zagor\Desktop\fluxa\tests\test_import.py            | Python             |          3 |          2 |          4 |          9 |
+| c:\Users\zagor\Desktop\fluxa\tests\test_logger.py            | Python             |         13 |          4 |          5 |         22 |
+| Total                                                        |                    |        716 |        390 |        172 |      1,278 |
++--------------------------------------------------------------+--------------------+------------+------------+------------+------------+

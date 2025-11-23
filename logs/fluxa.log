@@ -14,3 +14,44 @@
 2025-11-20 14:22:42 | WARNING  | __main__:<module>:19 - ⚠️  Warning message
 2025-11-20 14:22:42 | SUCCESS  | __main__:<module>:20 - ✅ Success message
 2025-11-20 14:22:42 | ERROR    | __main__:<module>:21 - ❌ Error message
+2025-11-22 12:48:33 | INFO     | fluxa.utils.logger:setup_logger:75 - Logger inizializzato | Level: INFO | File: logs\fluxa.log
+2025-11-22 12:48:33 | INFO     | fluxa.memory.database:__init__:50 - Database manager inizializzato | Path: data\fluxa.db
+2025-11-22 12:48:33 | SUCCESS  | fluxa.memory.database:initialize:87 - Database inizializzato correttamente | Path: data\test_fluxa.db
+2025-11-22 12:48:33 | INFO     | fluxa.memory.database:close:368 - Database chiuso
+2025-11-22 12:49:13 | INFO     | fluxa.utils.logger:setup_logger:75 - Logger inizializzato | Level: INFO | File: logs\fluxa.log
+2025-11-22 12:49:13 | INFO     | fluxa.memory.database:__init__:50 - Database manager inizializzato | Path: data\fluxa.db
+2025-11-22 12:49:13 | SUCCESS  | fluxa.memory.database:initialize:87 - Database inizializzato correttamente | Path: data\test_fluxa.db
+2025-11-22 12:49:13 | INFO     | fluxa.memory.database:close:368 - Database chiuso
+2025-11-22 12:51:45 | INFO     | fluxa.utils.logger:setup_logger:75 - Logger inizializzato | Level: INFO | File: logs\fluxa.log
+2025-11-22 12:51:45 | INFO     | fluxa.memory.database:__init__:50 - Database manager inizializzato | Path: data\fluxa.db
+2025-11-22 12:51:45 | SUCCESS  | fluxa.memory.database:initialize:87 - Database inizializzato correttamente | Path: data\test_fluxa.db
+2025-11-22 12:51:45 | INFO     | fluxa.memory.database:close:371 - Database chiuso
+2025-11-23 18:47:06 | INFO     | fluxa.utils.logger:setup_logger:75 - Logger inizializzato | Level: INFO | File: logs\fluxa.log
+2025-11-23 18:51:36 | INFO     | fluxa.utils.logger:setup_logger:75 - Logger inizializzato | Level: INFO | File: logs\fluxa.log
+2025-11-23 18:51:36 | INFO     | fluxa.llm.client:__init__:29 - LLM Client inizializzato | URL: http://localhost:1234/v1
+2025-11-23 18:58:53 | INFO     | fluxa.utils.logger:setup_logger:75 - Logger inizializzato | Level: INFO | File: logs\fluxa.log
+2025-11-23 18:58:53 | INFO     | fluxa.llm.client:__init__:29 - LLM Client inizializzato | URL: http://localhost:1234/v1
+2025-11-23 18:59:29 | INFO     | fluxa.utils.logger:setup_logger:75 - Logger inizializzato | Level: INFO | File: logs\fluxa.log
+2025-11-23 18:59:29 | INFO     | fluxa.llm.client:__init__:29 - LLM Client inizializzato | URL: http://localhost:1234/v1
+2025-11-23 18:59:31 | INFO     | fluxa.utils.logger:log_llm_interaction:167 - LLM REQUEST: Ciao! Rispondi con una sola frase breve.
+2025-11-23 18:59:31 | ERROR    | fluxa.llm.client:_stream_response:181 - Errore streaming: Client error '400 Bad Request' for url 'http://localhost:1234/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2025-11-23 18:59:31 | INFO     | fluxa.utils.logger:log_llm_interaction:167 - LLM RESPONSE: 
+2025-11-23 19:00:45 | INFO     | fluxa.utils.logger:setup_logger:75 - Logger inizializzato | Level: INFO | File: logs\fluxa.log
+2025-11-23 19:00:45 | INFO     | fluxa.llm.client:__init__:29 - LLM Client inizializzato | URL: http://localhost:1234/v1
+2025-11-23 19:00:47 | INFO     | fluxa.utils.logger:log_llm_interaction:167 - LLM REQUEST: Ciao! Rispondi con una sola frase breve.
+2025-11-23 19:00:50 | INFO     | fluxa.utils.logger:log_llm_interaction:167 - LLM RESPONSE: Certo, dimmi pure!
+
+2025-11-23 19:05:27 | INFO     | fluxa.utils.logger:setup_logger:75 - Logger inizializzato | Level: INFO | File: logs\fluxa.log
+2025-11-23 19:05:27 | INFO     | fluxa.memory.database:__init__:50 - Database manager inizializzato | Path: data\fluxa.db
+2025-11-23 19:05:27 | SUCCESS  | fluxa.memory.database:initialize:87 - Database inizializzato correttamente | Path: data\test_agent.db
+2025-11-23 19:05:27 | INFO     | fluxa.llm.client:__init__:29 - LLM Client inizializzato | URL: http://localhost:1234/v1
+2025-11-23 19:05:28 | INFO     | fluxa.core.agent:create_new_conversation:44 - Creata nuova conversazione: 1 - Test Agent Flow
+2025-11-23 19:08:32 | INFO     | fluxa.utils.logger:setup_logger:75 - Logger inizializzato | Level: INFO | File: logs\fluxa.log
+2025-11-23 19:08:32 | INFO     | fluxa.memory.database:__init__:50 - Database manager inizializzato | Path: data\fluxa.db
+2025-11-23 19:08:33 | SUCCESS  | fluxa.memory.database:initialize:87 - Database inizializzato correttamente | Path: data\test_agent.db
+2025-11-23 19:08:33 | INFO     | fluxa.llm.client:__init__:29 - LLM Client inizializzato | URL: http://localhost:1234/v1
+2025-11-23 19:08:33 | INFO     | fluxa.core.agent:create_new_conversation:44 - Creata nuova conversazione: 2 - Test Agent Flow
+2025-11-23 19:08:33 | INFO     | fluxa.utils.logger:log_llm_interaction:167 - LLM REQUEST: Qual è la capitale d'Italia? Rispondi con una sola parola.
+2025-11-23 19:08:37 | INFO     | fluxa.utils.logger:log_llm_interaction:167 - LLM RESPONSE: Roma.
+2025-11-23 19:08:37 | INFO     | fluxa.memory.database:close:371 - Database chiuso

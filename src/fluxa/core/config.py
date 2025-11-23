@@ -281,12 +281,12 @@ class LoggingSettings(BaseSettings):
     )
 
     @field_validator("file_path")
-    def reate_log_directory(cls, v: Path | None) -> Path | None:
+    def create_log_directory(cls, v: Path | None) -> Path | None:
         """Crea automaticamente le directory parent se non esistono."""
         if v is not None:
             v.parent.mkdir(parents=True, exist_ok=True)
         return v
-    
+
     model_config = SettingsConfigDict(
         env_prefix="FLUXA_LOGGING_",
         case_sensitive=False,
