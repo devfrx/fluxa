@@ -55,3 +55,39 @@ For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/St
 2025-11-23 19:08:33 | INFO     | fluxa.utils.logger:log_llm_interaction:167 - LLM REQUEST: Qual è la capitale d'Italia? Rispondi con una sola parola.
 2025-11-23 19:08:37 | INFO     | fluxa.utils.logger:log_llm_interaction:167 - LLM RESPONSE: Roma.
 2025-11-23 19:08:37 | INFO     | fluxa.memory.database:close:371 - Database chiuso
+2025-11-23 19:15:17 | INFO     | fluxa.utils.logger:setup_logger:75 - Logger inizializzato | Level: INFO | File: logs\fluxa.log
+2025-11-23 19:17:51 | INFO     | fluxa.utils.logger:setup_logger:75 - Logger inizializzato | Level: INFO | File: logs\fluxa.log
+2025-11-23 19:17:51 | INFO     | fluxa.memory.database:__init__:50 - Database manager inizializzato | Path: data\fluxa.db
+2025-11-23 19:17:51 | SUCCESS  | fluxa.memory.database:initialize:87 - Database inizializzato correttamente | Path: data\fluxa.db
+2025-11-23 19:17:51 | INFO     | fluxa.llm.client:__init__:29 - LLM Client inizializzato | URL: http://localhost:1234/v1
+2025-11-23 19:17:52 | INFO     | fluxa.core.agent:create_new_conversation:44 - Creata nuova conversazione: 1 - Nuova Chat
+2025-11-23 19:18:03 | INFO     | fluxa.utils.logger:log_llm_interaction:167 - LLM REQUEST: ciao
+2025-11-23 19:18:06 | INFO     | fluxa.utils.logger:log_llm_interaction:167 - LLM RESPONSE: Ciao! Come posso aiutarti oggi?
+
+2025-11-23 19:21:11 | INFO     | fluxa.memory.database:close:371 - Database chiuso
+2025-11-23 19:21:33 | INFO     | fluxa.utils.logger:setup_logger:75 - Logger inizializzato | Level: INFO | File: logs\fluxa.log
+2025-11-23 19:21:33 | INFO     | fluxa.memory.database:__init__:50 - Database manager inizializzato | Path: data\fluxa.db
+2025-11-23 19:21:33 | SUCCESS  | fluxa.memory.database:initialize:87 - Database inizializzato correttamente | Path: data\fluxa.db
+2025-11-23 19:21:33 | INFO     | fluxa.llm.client:__init__:29 - LLM Client inizializzato | URL: http://localhost:1234/v1
+2025-11-23 19:21:34 | INFO     | fluxa.core.agent:create_new_conversation:44 - Creata nuova conversazione: 2 - Nuova Chat
+2025-11-23 19:21:54 | INFO     | fluxa.utils.logger:log_llm_interaction:167 - LLM REQUEST: ciao come va?
+2025-11-23 19:21:59 | INFO     | fluxa.utils.logger:log_llm_interaction:167 - LLM RESPONSE: Ciao! Vado bene, grazie per avermelo chiesto. Come posso aiutarti oggi?
+
+2025-11-23 19:22:37 | INFO     | fluxa.utils.logger:log_llm_interaction:167 - LLM REQUEST: puoi dirmi la ricetta della carbonara?
+2025-11-23 19:23:23 | INFO     | fluxa.utils.logger:log_llm_interaction:167 - LLM RESPONSE: Certo, ecco la ricetta classica della carbonara:
+
+**Ingredienti (per 2 persone):**
+
+*   160g di spaghetti
+*   80g di guanciale (o pancetta affumicata)
+*   2 tuorli d'uovo + 1 uovo intero
+*   40g di pe...
+2025-11-23 19:24:20 | INFO     | fluxa.utils.logger:log_llm_interaction:167 - LLM REQUEST: grazie sai dirmi cosa vedi in questa immagine? C:\Users\zagor\Desktop\prova.jpg
+2025-11-23 19:24:36 | INFO     | fluxa.utils.logger:log_llm_interaction:167 - LLM RESPONSE: Mi dispiace, ma non posso accedere a file locali sul tuo computer, quindi non posso dirti cosa c'è nell'immagine "C:\Users\zagor\Desktop\prova.jpg". Sono un modello linguistico e non ho la capacità di...
+2025-11-23 19:28:32 | INFO     | fluxa.utils.logger:log_llm_interaction:167 - LLM REQUEST: ok grazie
+2025-11-23 19:28:36 | INFO     | fluxa.utils.logger:log_llm_interaction:167 - LLM RESPONSE: Prego! Se hai altre domande, non esitare a chiedere. 😊
+2025-11-23 19:29:00 | INFO     | fluxa.utils.logger:log_llm_interaction:167 - LLM REQUEST: sai scrivere codice?
+2025-11-23 19:29:22 | INFO     | fluxa.utils.logger:log_llm_interaction:167 - LLM RESPONSE: Sì, posso scrivere codice in diversi linguaggi di programmazione. Ecco alcuni esempi:
+
+*   **Python:** Molto usato per data science, machine learning e scripting.
+*   **JavaScript:** Per lo sviluppo w...
