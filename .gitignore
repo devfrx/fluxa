@@ -70,3 +70,5 @@ uv.lock
 
 # VS Code
 .vscode/
+logs
+/logs
